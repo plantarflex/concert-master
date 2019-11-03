@@ -1,5 +1,5 @@
-./web/front/node_modules
-./web/front/yarn.lock
+web/front/node_modules
+web/front/yarn.lock
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
