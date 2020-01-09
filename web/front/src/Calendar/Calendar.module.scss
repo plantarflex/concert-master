@@ -1,7 +1,46 @@
-.wrapper{
-  background: yellow;
-  display: flex;
-  flex-direction: column;
-  width: 20%;
-  height: 100%;
+:global {
+@import '../../node_modules/@fullcalendar/core/main.css';
+@import '../../node_modules/@fullcalendar/daygrid/main.css'; 
+//@import '~@fullcalendar/core/main.css';
+//@import '~@fullcalendar/daygrid/main.css'; 
 }
+.wrapper{
+  background: white;
+  width: 85%;
+  height: 100%;
+  .calendar {
+    width: 100%;
+    height: 100%;
+  }
+}
+//:global {
+//  .fc {
+//    width: 100%;
+//    height: 100%;
+//    .fc-toolbar {
+//      width: 100%;
+//      height: 20%;
+//    }
+//    .fc-view-container {
+//      width: 100%;
+//      height: 80%;
+//      .fc-view {
+//        height: 100%;
+//        table {
+//          width: 100%;
+//          height: 100%;
+//        }
+//      } 
+//    }
+//  }
+//  .fc-day-grid {
+//    height: 100%;
+//  }
+//  .fc-row {
+//    height: 15% !important;
+//  }
+//  .fc-scroller {
+//    height: 100% !important;
+//    overflow: inherit !important;
+//  }
+//}

@@ -1,8 +1,10 @@
+import FullCalendar from '@fullcalendar/react'
+import dayGridPlugin from '@fullcalendar/daygrid'
 import React from 'react'
-import styles from './Calendar.module.scss';
+import styles from './Calendar.module.scss'
 import classNames from 'classnames/bind'
 import { connect } from 'react-redux'
-
+import './Calendar.scss'
 const cx = classNames.bind(styles)
 
 class Calendar extends React.Component {
@@ -13,7 +15,10 @@ class Calendar extends React.Component {
   render() {
     return (
       <div className={cx('wrapper')}>
-        Calendar
+        <FullCalendar
+          defaultView="dayGridMonth"
+          plugins={[ dayGridPlugin ]}
+          />
       </div>
     )
   }

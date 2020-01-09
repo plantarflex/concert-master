@@ -18,8 +18,10 @@ class App extends React.Component {
     return (
       <div className={cx('wrapper')}>
         <Nav />
-        <Controller />
-        <Calendar />
+        <div className={cx('mainContainer')}>
+          <Controller />
+          <Calendar />
+        </div>
       </div>
     )
   }
