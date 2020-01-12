@@ -1,2 +1,3 @@
 viewer/frontend/src/fonts/* linguist-vendored
+viewer/frontend/src/fonts/webfont.normal.css
 viewer/frontend/src/_styles/antd.* linguist-vendored
