@@ -5,6 +5,6 @@ docker run -d \
     -w /frontend \
     -v $PWD:/frontend \
     --restart="always" \
-    node:8.16.1-slim \
+    node:13.6.0-slim \
     yarn start
 docker logs -f concert-master_front 

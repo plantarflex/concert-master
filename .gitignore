@@ -1,5 +1,6 @@
-web/frontend/node_modules
-web/frontend/yarn.lock
+viewer/frontend/node_modules
+viewer/frontend/yarn.lock
+data/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
