@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 from pathlib import Path
 
 
-basedir = os.path.dirname(s.path.abspath(__file__))
+basedir = os.path.dirname(os.path.abspath(__file__))
 env_path = Path(os.path.join(basedir, '..')) / '.env'
 load_dotenv(dotenv_path=env_path)
 

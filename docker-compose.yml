@@ -11,6 +11,7 @@ services:
       - ./viki:/usr/src/app
     links:
       - db
+    working_dir: /usr/src/app
     command: python3.6 demon.py
 
   viewer:
@@ -21,10 +22,11 @@ services:
     ports:
       - 8000:8000
     volumes:
-      - ./viki:/config.py:/usr/scr/app/config.py
+      - ./viki/config.py:/usr/scr/app/config.py
       - ./viewer:/usr/src/app
     links:
       - db
+    working_dir: /usr/src/app
     command: python3.6 app.py
 
 #  nginx:

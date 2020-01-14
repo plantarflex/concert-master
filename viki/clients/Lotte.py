@@ -3,7 +3,6 @@ import requests
 
 class LotteAjaxScraper:     # 연 단위로 통째로 긁어오는 방법이 최선
     def __init__(self, year, month=None):
-        year = str(year)
         self.getPerformList_request = "year=" + year + \
                                       "&month=1" \
                                       "&day=1" \
@@ -11,11 +10,11 @@ class LotteAjaxScraper:     # 연 단위로 통째로 긁어오는 방법이 최
         self.perform_list = []
         self.response_status_code = None
 
-    def scrape_perform_list(self, page_index=1):
-        payload = self.getPerformList_request + str(page_index)
-        response = requests.post(
+    def scrape_perform_list(self, page_index):
+                response = requests.post(
                 url='http://www.lotteconcerthall.com/kor/Performance/IndexConcerts',
-                data=payload,
+                data=self.getPerformList_request + str(page_index)
+,
                 headers={
                     'Content-Length': '35',   #TODO: content-length chunk 시켜 omit 할 수 있는 방법 권장됨
                     'Content-Type': 'application/x-www-form-urlencoded',

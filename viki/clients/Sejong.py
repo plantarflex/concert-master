@@ -2,15 +2,6 @@ import requests
 from bs4 import BeautifulSoup as BS
 
 
-def date_to_sting(year, month):
-    if month < 10:
-        month = '0' + str(month)
-    else:
-        month = str(month)
-    year = str(year)
-    return year, month
-
-
 class SejongAjaxScraper:
     def __init__(self, year, month):
         year, month = date_to_sting(year, month)
@@ -33,10 +24,9 @@ class SejongAjaxScraper:
         self.response_status_code = None
 
     def scrape_perform_list(self):
-        payload = self.getPerformList_request
         response = requests.post(
                 url='http://www.sejongpac.or.kr/controls/ajax/performanceList.asp',
-                data=payload,
+                data=self.getPerformList_request,
                 headers={
                     'X-Requested-With': 'XMLHttpRequest',
                     'Content-Type': 'application/x-www-form-urlencoded'
