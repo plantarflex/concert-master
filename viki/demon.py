@@ -2,12 +2,12 @@ import os
 import time
 from datetime import datetime
 import multiprocessing
-from threading import Thread
+from threading import Thread, Lock
 from concurrent.futures import ThreadPoolExecutor
 
-from config import BaseConfig
+from config import Config
 from models import *
-from log import Logger
+from logger import Logger
 from manage import init_db, connect_db
 from clients import Sac, Sejong, Lotte, AjaxScraper
 
@@ -15,14 +15,14 @@ from sqlalchemy.orm import sessionmaker
 
 
 def init_demon():
-    init_db(BaseConfig.VIKI_DB_URI)
+    init_db(Config.VIKI_DB_URI)
     global logger
     logger = Logger()
 
 
 def scrape(sc, thread_name):
     logger.create(thread_name, levels=['DEBUG', 'INFO', 'ERROR'])
-    postgres_engine = connect_db(BaseConfig.VIKI_DB_URI)
+    postgres_engine = connect_db(Config.VIKI_DB_URI)
     Session = sessionmaker(bind=postgres_engine)
     while True:
         time.sleep(10)
@@ -57,11 +57,34 @@ def scrape_concurrently():
     with ThreadPoolExecutor as executor:
         for k,v in scrapers.items():
             executor.submit(k,v)
-    
+
+
+def hook(thread_idx, lock):
+    while True:
+        print('online')
+        time.sleep(10)
+
+
+def run():
+    lock = Lock()
+    with ThreadPoolExecutor(max_workers=Config.THREAD_WORKERS_NUM) as executor:
+        for idx in range(1, Config.THREAD_WORKERS_NUM+1):
+            executor.submit(
+                hook,
+                idx,
+                lock
+                )
+
+
+def run_accordingly():
+    thread_1 = Thread(target=thread_work, args=(1,))
+    thread_1.start()
+    thread_1.join()
 
 if __name__ == '__main__':
-    from hook import hook
-    hook()
-
-#if __name__ == '__main__':
-#    init_demon()
+    try:
+        init_demon()
+    except Exception as e:
+        print('>>>>>>>> Demon initiation error')
+    else:
+        run()

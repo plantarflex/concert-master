@@ -11,14 +11,13 @@ class LotteAjaxScraper:     # 연 단위로 통째로 긁어오는 방법이 최
         self.response_status_code = None
 
     def scrape_perform_list(self, page_index):
-                response = requests.post(
-                url='http://www.lotteconcerthall.com/kor/Performance/IndexConcerts',
-                data=self.getPerformList_request + str(page_index)
-,
-                headers={
-                    'Content-Length': '35',   #TODO: content-length chunk 시켜 omit 할 수 있는 방법 권장됨
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    'X-Requested-With': 'XMLHttpRequest'
+        response = requests.post(
+            url='http://www.lotteconcerthall.com/kor/Performance/IndexConcerts',
+            data=self.getPerformList_request + str(page_index),
+            headers={
+                'Content-Length': '35',   #TODO: content-length chunk 시켜 omit 할 수 있는 방법 권장됨
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-Requested-With': 'XMLHttpRequest'
                 }
             )
         self.perform_list += response.json()['concerts']  # this is list
